@@ -69,7 +69,7 @@ public class FirstDemo implements ApplicationListener, InputProcessor{
 	public void create() {
 		lights = new Environment();
 		lights.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.2f, 0.2f, 0.2f, 1.f));
-//		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -0.5f, -1f, -0.7f));
+		lights.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -0.5f, -1f, -0.7f));
 		
 		// Set up the camera
 		final float width = Gdx.graphics.getWidth();
