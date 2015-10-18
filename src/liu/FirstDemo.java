@@ -2,6 +2,7 @@ package liu;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.FloatCounter;
 import com.badlogic.gdx.math.MathUtils;
@@ -45,6 +47,7 @@ public class FirstDemo implements ApplicationListener, InputProcessor{
 	public PerformanceCounter performanceCounter = new PerformanceCounter(this.getClass().getSimpleName());
 	public FloatCounter fpsCounter = new FloatCounter(5);
 	public PerspectiveCamera camera;
+	public CameraInputController inputController;
 	
 	ModelBatch modelBatch;
 	Environment lights;
@@ -65,6 +68,11 @@ public class FirstDemo implements ApplicationListener, InputProcessor{
 	Array<btCollisionShape> shapes = new Array<btCollisionShape>();
 	Array<btRigidBody> bodies = new Array<btRigidBody>();
 	
+	public String title = "first demo!";
+	public String getTitle(){
+		return this.title;
+	}
+	
 	@Override
 	public void create() {
 		lights = new Environment();
@@ -81,6 +89,7 @@ public class FirstDemo implements ApplicationListener, InputProcessor{
 		camera.position.set(10f, 10f, 10f);
 		camera.lookAt(0, 0, 0);
 		camera.update();
+		Gdx.input.setInputProcessor(new InputMultiplexer(this, inputController = new CameraInputController(camera)));
 		
 		modelBatch = new ModelBatch();
 		

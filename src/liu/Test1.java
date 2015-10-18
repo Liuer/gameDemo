@@ -26,7 +26,7 @@ public class Test1 extends InputAdapter implements ApplicationListener {
 	public ModelInstance instance;
 	public Environment environment;
 	
-	public String title = "title1";
+	public final static String title = "title1";
 	
 	@Override
 	public void create() {
@@ -104,7 +104,7 @@ public class Test1 extends InputAdapter implements ApplicationListener {
 
 	}
 	
-	public String getTitle(){
+	public final String getTitle(){
 		return title;
 	}
 
